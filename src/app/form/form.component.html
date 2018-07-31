@@ -1,0 +1,43 @@
+<div class="admin-screen">
+  <form [formGroup]="adminForm" class="admin-form">
+    <h1>Form</h1>
+    <mat-form-field>
+      <mat-select [(ngModel)]="project['team']" placeholder="Select your team" formControlName="team" id="team" required>
+        <mat-option *ngFor="let team of teams" [value]="team">
+          Team {{ team }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="adminForm.get('team').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="project['activity']" placeholder="Activity" formControlName="activity" id="activity" required>
+      <mat-error *ngIf="adminForm.get('activity').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="project['startDate']" [matDatepicker]="startDatePicker" placeholder="Select a initial date" formControlName="startDate"
+        id="startDate" required>
+      <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #startDatePicker></mat-datepicker>
+      <mat-error *ngIf="adminForm.get('startDate').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [(ngModel)]="project['endDate']" [matDatepicker]="endDatePicker" placeholder="Select a final date" formControlName="endDate"
+        id="endDate" required>
+      <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #endDatePicker></mat-datepicker>
+      <mat-error *ngIf="adminForm.get('endDate').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(ngModel)]="project['status']" placeholder="Status of project" formControlName="status" id="status" required>
+        <mat-option *ngFor="let status of availableStatus" [value]="status.value">
+          {{ status.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="adminForm.get('status').hasError('required')">You must enter a value</mat-error>
+    </mat-form-field>
+  </form>
+</div>
+<div class="button-area">
+  <button mat-raised-button color="warn" (click)="cancel(project)">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="adminForm.invalid" (click)="save(project)">Save</button>
+</div>

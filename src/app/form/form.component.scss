@@ -1,0 +1,26 @@
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-top: 3em;
+  }
+  
+  .admin-screen {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button-area {
+    display: flex;
+    justify-content: center;
+    >button {
+      margin: 0.5em;
+    }
+  }
+  
+  .actions-area {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+  }
+  
